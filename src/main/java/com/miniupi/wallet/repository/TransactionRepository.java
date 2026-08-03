@@ -1,5 +1,7 @@
 package com.miniupi.wallet.repository;
 
+// This repository handles the passbook/ledger functionality and idempotency checks.
+
 import com.miniupi.wallet.entity.Transaction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
