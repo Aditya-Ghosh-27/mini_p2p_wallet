@@ -9,6 +9,7 @@ import com.miniupi.wallet.exception.WalletNotFoundException;
 import com.miniupi.wallet.repository.TransactionRepository;
 import com.miniupi.wallet.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,6 +65,13 @@ public class TransferService {
                 .idempotencyKey(idempotencyKey)
                 .build();
 
-        return transactionRepository.save(transaction);
+
+        // 8. Race-Condition Fix
+        try {
+            // saveAndFlush forces the SQL INSERT immediately so we can catch the DB constraint violation here
+            return transactionRepository.saveAndFlush(transaction);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateTransactionException("Duplicate Request. Transaction already processed for key: " + idempotencyKey);
+        }
     }
 }
