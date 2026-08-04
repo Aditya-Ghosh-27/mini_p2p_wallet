@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record TransferResponse (
-    Long transactionId,
-    Long senderWalletId,
-    Long receiverWalletId,
-    BigDecimal amount,
-    TransactionStatus status,
-    LocalDateTime timestamp
+        Long transactionId,
+        Long senderWalletId,
+        Long receiverWalletId,
+        BigDecimal amount,
+        TransactionStatus status,
+        LocalDateTime timestamp
 ) {}

@@ -6,7 +6,6 @@ import com.miniupi.wallet.entity.Transaction;
 import com.miniupi.wallet.service.TransferService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class TransferController {
     private final TransferService transferService;
 
     @PostMapping
-    public RequestEntity<TransferResponse> transferFunds(
+    public ResponseEntity<TransferResponse> transferFunds(
             @RequestHeader("Idempotency-Key") String idempotencyKey,
             @Valid @RequestBody TransferRequest request
             ) {
