@@ -8,7 +8,7 @@ package com.miniupi.wallet.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.transaction.TransactionStatus;
+import com.miniupi.wallet.entity.TransactionStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
